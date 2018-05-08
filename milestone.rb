@@ -7,7 +7,7 @@ class Milestone
     @milestones ||= begin
       config = YAML.load_file('config.yaml')
       stats = SprintStatistics.new(ENV["GITHUB_API_TOKEN"])
-      stats.client.milestones(config[:milestone_reference_repo], :state => "all")
+      stats.client.milestones(config[:milestone_reference_repo], :state => "all", :per_page => 1000)
     end
   end
 

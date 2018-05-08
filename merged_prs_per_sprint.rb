@@ -100,7 +100,7 @@ def prs_for_milestone(milestone, milestone_range, fq_repo_name)
 end
 
 def process_repo(fq_repo_name, milestone, milestone_range, f)
-  milestone = stats.client.milestones(fq_repo_name, :state => "all").detect { |m| m[:title] == milestone.title }
+  milestone = stats.client.milestones(fq_repo_name, :state => "all", :per_page => 1000).detect { |m| m[:title] == milestone.title }
   prs, total_pr_count = prs_for_milestone(milestone, milestone_range, fq_repo_name)
   return if prs.count.zero?
 
